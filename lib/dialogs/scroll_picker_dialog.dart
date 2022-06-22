@@ -26,6 +26,8 @@ class ScrollPickerDialog<T> extends StatefulWidget
     this.showDivider: true,
     this.confirmText,
     this.cancelText,
+    this.defaultTextStyle,
+    this.selectedTextStyle,
   });
 
   // Variables
@@ -51,6 +53,8 @@ class ScrollPickerDialog<T> extends StatefulWidget
   @override
   final String? cancelText;
 
+  final TextStyle? defaultTextStyle;
+  final TextStyle? selectedTextStyle;
   final bool showDivider;
 
   @override
@@ -82,6 +86,8 @@ class _ScrollPickerDialogState<T> extends State<ScrollPickerDialog<T>> {
         showDivider: widget.showDivider,
         onChanged: (value) => setState(() => selectedItem = value),
         transformer: widget.transformer,
+        defaultStyle: widget.defaultTextStyle,
+        selectedStyle: widget.selectedTextStyle,
       ),
       okPressed: () => Navigator.of(context).pop(selectedItem),
     );

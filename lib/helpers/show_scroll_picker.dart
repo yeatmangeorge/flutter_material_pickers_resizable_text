@@ -57,6 +57,9 @@ Future<T?> showMaterialScrollPicker<T>({
   /// Function that is called when each items renders which can be used to transform the content
   /// This is helpful, for example, to provide translations to other languages
   Transformer<T>? transformer,
+
+  TextStyle? defaultTextStyle,
+  TextStyle? selectedTextStyle,
 }) {
   return showDialog<T>(
     context: context,
@@ -75,6 +78,9 @@ Future<T?> showMaterialScrollPicker<T>({
         maxShortSide: maxLongSide,
         showDivider: showDivider,
         transformer: transformer,
+        defaultTextStyle: defaultTextStyle,
+        selectedTextStyle: selectedTextStyle,
+
       );
     },
   ).then((selection) {

@@ -13,6 +13,8 @@ class ScrollPicker<T> extends StatefulWidget {
     required this.selectedItem,
     required this.onChanged,
     this.showDivider: true,
+    this.defaultStyle,
+    this.selectedStyle,
     this.transformer,
   }) : super(key: key);
 
@@ -23,6 +25,8 @@ class ScrollPicker<T> extends StatefulWidget {
   final List<T> items;
   final T selectedItem;
   final bool showDivider;
+  final TextStyle? defaultStyle;
+  final TextStyle? selectedStyle;
 
   // Callbacks
   final Transformer<T>? transformer;
@@ -59,9 +63,13 @@ class _ScrollPickerState<T> extends State<ScrollPicker<T>> {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
-    TextStyle? defaultStyle = themeData.textTheme.bodyText2;
-    TextStyle? selectedStyle = themeData.textTheme.headline5
-        ?.copyWith(color: themeData.colorScheme.secondary);
+    TextStyle? defaultStyle = (widget.defaultStyle != null)
+        ? widget.defaultStyle
+        : themeData.textTheme.bodyText2;
+    TextStyle? selectedStyle = (widget.selectedStyle != null)
+        ? widget.selectedStyle
+        : themeData.textTheme.headline5
+            ?.copyWith(color: themeData.colorScheme.secondary);
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
